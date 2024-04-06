@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:indihome/screens/signin_screen.dart';
 import 'package:indihome/screens/signup_screen.dart';
 import 'package:indihome/theme/theme.dart';
+import 'package:indihome/Components/colors.dart';
 import 'package:indihome/widgets/custom_scaffold.dart';
 import 'package:indihome/widgets/welcome_button.dart';
 
@@ -23,21 +24,25 @@ class WelcomeScreen extends StatelessWidget {
                 child: Center(
                   child: RichText(
                     textAlign: TextAlign.center,
-                    text: const TextSpan(
+                    text: TextSpan(
                       children: [
                         TextSpan(
-                            text: 'IndiHome\n',
-                            style: TextStyle(
-                              fontSize: 45.0,
-                              fontWeight: FontWeight.w600,
-                            )),
+                          text: 'IndiHome\n',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat', // Set the font family to Montserrat
+                            fontWeight: FontWeight.bold, // Make it bold
+                            fontSize: 47.0,
+                            color: primaryColor,
+                          ),
+                        ),
                         TextSpan(
-                            text:
-                                '\nWelcome to the new realm of Interior Designing',
-                            style: TextStyle(
-                              fontSize: 20,
-                              // height: 0,
-                            ))
+                          text: '\nWelcome Home to Endless Possibilities: Where Every Detail of Your Dream Space Comes to Life',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: primaryColor,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -49,12 +54,12 @@ class WelcomeScreen extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: WelcomeButton(
                       buttonText: 'Sign in',
                       onTap: SignInScreen(),
                       color: Colors.transparent,
-                      textColor: Colors.white,
+                      textColor: lightColorScheme.primary,
                     ),
                   ),
                   Expanded(

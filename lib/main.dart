@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:indihome/screens/welcome_screen.dart';
+import 'package:indihome/Onboarding/onboarding_view.dart';
 import 'package:indihome/theme/theme.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'IndiHome - AR based Interior Designing Application',
       theme: lightMode,
-      home: const WelcomeScreen(),
+      home: const OnboardingView(),
     );
   }
 }
