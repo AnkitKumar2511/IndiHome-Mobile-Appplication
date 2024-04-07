@@ -1,16 +1,8 @@
-# login_signup
-
-A new Flutter project.
+# Final Year Project
+# IndiHome
+IndiHome revolutionizes the way we think about and approach interior design. In a world where technology meets creativity, IndiHome stands out as an augmented reality (AR) application designed to transform any space into the room of your dreams. Our app offers users an immersive experience, allowing them to visualize, design, and modify their interiors with unparalleled precision and ease.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a IndiHome application.....
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
