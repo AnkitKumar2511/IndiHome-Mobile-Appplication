@@ -39,7 +39,7 @@ class WelcomeScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
-                            color: primaryColor,
+                            color: Colors.black,
                           ),
                         ),
                       ],
@@ -58,7 +58,7 @@ class WelcomeScreen extends StatelessWidget {
                       buttonText: 'Sign in',
                       onTap: SignInScreen(),
                       color: Colors.transparent,
-                      textColor: lightColorScheme.primary,
+                      textColor: primaryColor,
                     ),
                   ),
                   Expanded(
@@ -66,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
                       buttonText: 'Sign up',
                       onTap: const SignUpScreen(),
                       color: Colors.white,
-                      textColor: lightColorScheme.primary,
+                      textColor: primaryColor,
                     ),
                   ),
                 ],
