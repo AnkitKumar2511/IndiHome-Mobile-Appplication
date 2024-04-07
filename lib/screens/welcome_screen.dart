@@ -29,7 +29,6 @@ class WelcomeScreen extends StatelessWidget {
                         TextSpan(
                           text: 'IndiHome\n',
                           style: TextStyle(
-                            fontFamily: 'Montserrat', // Set the font family to Montserrat
                             fontWeight: FontWeight.bold, // Make it bold
                             fontSize: 47.0,
                             color: primaryColor,
