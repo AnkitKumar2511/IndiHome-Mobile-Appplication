@@ -4,6 +4,8 @@ import 'package:indihome/screens/signin_screen.dart';
 import 'package:indihome/theme/theme.dart';
 import 'package:indihome/widgets/custom_scaffold.dart';
 
+import '../Components/sqaure_tile.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -240,13 +242,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 30.0,
                       ),
                       // sign up social media logo
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Logo(Logos.facebook_f),
-                          Logo(Logos.twitter),
-                          Logo(Logos.google),
-                          Logo(Logos.apple),
+                          // google button
+                          SquareTile(imagePath: 'assets/images/google.png'),
+                          SizedBox(width: 25),
+                          // apple button
+                          SquareTile(imagePath: 'assets/images/apple.png')
                         ],
                       ),
                       const SizedBox(

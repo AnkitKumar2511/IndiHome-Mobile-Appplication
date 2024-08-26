@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:indihome/screens/signup_screen.dart';
+import 'package:indihome/screens/forget_password_screen.dart'; // Import the ForgetPasswordScreen
 import 'package:indihome/widgets/custom_scaffold.dart';
-
+import '../Components/sqaure_tile.dart';
 import '../theme/theme.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -13,8 +14,9 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final _formSignInKey = GlobalKey<FormState>();
-  bool rememberPassword = true;
+  final _formSignInKey = GlobalKey<FormState>(); // Key to uniquely identify the form
+  bool rememberPassword = true; // State variable to manage the "Remember me" checkbox
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -23,7 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
           const Expanded(
             flex: 1,
             child: SizedBox(
-              height: 10,
+              height: 10, // Empty space for alignment
             ),
           ),
           Expanded(
@@ -57,7 +59,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Email';
+                            return 'Please enter Email'; // Email validation message
                           }
                           return null;
                         },
@@ -89,7 +91,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         obscuringCharacter: '*',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Password';
+                            return 'Please enter Password'; // Password validation message
                           }
                           return null;
                         },
@@ -125,7 +127,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 value: rememberPassword,
                                 onChanged: (bool? value) {
                                   setState(() {
-                                    rememberPassword = value!;
+                                    rememberPassword = value!; // Update state when checkbox changes
                                   });
                                 },
                                 activeColor: lightColorScheme.primary,
@@ -139,6 +141,15 @@ class _SignInScreenState extends State<SignInScreen> {
                             ],
                           ),
                           GestureDetector(
+                            onTap: () {
+                              // Navigate to ForgetPasswordScreen when tapped
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ForgetPasswordScreen(),
+                                ),
+                              );
+                            },
                             child: Text(
                               'Forget password?',
                               style: TextStyle(
@@ -156,6 +167,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
+                            // Validate form and show appropriate SnackBar
                             if (_formSignInKey.currentState!.validate() &&
                                 rememberPassword) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -210,18 +222,19 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: 25.0,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Logo(Logos.facebook_f),
-                          Logo(Logos.twitter),
-                          Logo(Logos.google),
-                          Logo(Logos.apple),
+                          // Google button
+                          SquareTile(imagePath: 'assets/images/google.png'),
+                          const SizedBox(width: 25),
+                          // Apple button
+                          SquareTile(imagePath: 'assets/images/apple.png'),
                         ],
                       ),
                       const SizedBox(
                         height: 25.0,
                       ),
-                      // don't have an account
+                      // Don't have an account
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -233,6 +246,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              // Navigate to SignUpScreen when tapped
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

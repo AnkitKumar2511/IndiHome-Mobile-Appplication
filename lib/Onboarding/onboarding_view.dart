@@ -70,7 +70,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 Text(
                   controller.items[index].description,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey, fontSize: 17),
+                  style: const TextStyle(color: Colors.grey, fontSize: 17),
                 ),
               ],
             );
@@ -83,7 +83,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   // Get Started Button
   Widget getStarted() {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.purple, // Update this color as needed
       ),
       width: MediaQuery.of(context).size.width * .9,
@@ -93,7 +93,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           // Navigate to WelcomeScreen and replace the current route
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => WelcomeScreen()),
+            MaterialPageRoute(builder: (context) => const WelcomeScreen()),
           );
         },
         child: const Text("Get Started", style: TextStyle(color: Colors.white)),

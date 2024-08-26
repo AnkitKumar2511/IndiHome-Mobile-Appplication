@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:indihome/screens/signin_screen.dart';
 import 'package:indihome/screens/signup_screen.dart';
-import 'package:indihome/theme/theme.dart';
 import 'package:indihome/Components/colors.dart';
 import 'package:indihome/widgets/custom_scaffold.dart';
 import 'package:indihome/widgets/welcome_button.dart';
@@ -24,7 +23,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: Center(
                   child: RichText(
                     textAlign: TextAlign.center,
-                    text: TextSpan(
+                    text: const TextSpan(
                       children: [
                         TextSpan(
                           text: 'IndiHome\n',
@@ -47,7 +46,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
               )),
-          Flexible(
+          const Flexible(
             flex: 1,
             child: Align(
               alignment: Alignment.bottomRight,
@@ -64,7 +63,7 @@ class WelcomeScreen extends StatelessWidget {
                   Expanded(
                     child: WelcomeButton(
                       buttonText: 'Sign up',
-                      onTap: const SignUpScreen(),
+                      onTap: SignUpScreen(),
                       color: Colors.white,
                       textColor: primaryColor,
                     ),
