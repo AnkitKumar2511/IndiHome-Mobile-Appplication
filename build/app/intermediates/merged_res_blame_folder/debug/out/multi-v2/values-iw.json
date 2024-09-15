@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.login_signup.app-mergeDebugResources-33:/values-iw/values-iw.xml",
+            "outputFile": "com.example.login_signup.app-mergeDebugResources-35:/values-iw/values-iw.xml",
             "map": [
                 {
                     "source": "/Users/ankitkumargupta/.gradle/caches/transforms-3/a1648e89606011c26d97ae443a0c7677/transformed/jetified-credentials-1.2.0-rc01/res/values-iw/values-iw.xml",

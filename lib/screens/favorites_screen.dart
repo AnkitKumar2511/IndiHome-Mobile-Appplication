@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'categories_screen.dart'; // Import the CategoriesScreen
+import 'homepage_screen.dart'; // Import the HomePageScreen
+import 'profile_screen.dart'; // Import the ProfileScreen
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -8,30 +11,56 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
-  int _selectedIndex = 1; // Set the default selected index to 'Favorites'
+  int _selectedIndex = 1; // Default to 'Favorites' tab
 
+  // Method to handle tapping on bottom navigation bar items
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      // Add navigation logic if necessary
-    });
+    if (index == 0) {
+      // Navigate to HomePageScreen when 'Home' tab is selected
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePageScreen()),
+      );
+    } else if (index == 1) {
+      // Stay on FavoritesScreen
+      setState(() {
+        _selectedIndex = index;
+      });
+    } else if (index == 2) {
+      // Navigate to CategoriesScreen when 'Categories' tab is selected
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CategoriesScreen()),
+      );
+    } else if (index == 3) {
+      // Navigate to ProfileScreen when 'Profile' tab is selected
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const ProfileScreen()),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false, // Removes the back button
         title: Row(
           children: [
-            const Icon(Icons.favorite, color: Colors.blue),
+            const Icon(Icons.favorite, color: Colors.blue), // Favorites icon
             const SizedBox(width: 8),
             Text(
               'Favorites',
-              style: TextStyle(color: Colors.blue[800], fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Colors.blue[800],
+                fontWeight: FontWeight.bold,
+                fontSize: 20, // Matching font size
+              ),
             ),
           ],
         ),
-        backgroundColor: const Color(0xFFFFB38A), // Lighter version of #FFB38A
+        backgroundColor: const Color(0xFFFFB38A), // Same background color
         elevation: 0,
       ),
       body: Container(
@@ -39,7 +68,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16.0),
           children: <Widget>[
-            // Sample favorite items (Make sure the image paths are correct)
+            // Sample favorite items
             _buildFavoriteCard('assets/images/modern_sofa.png', 'Modern Sofa', '\$300'),
             _buildFavoriteCard('assets/images/luxury_bed.png', 'Luxury Bed', '\$450'),
             _buildFavoriteCard('assets/images/dining_table.png', 'Dining Table Set', '\$200'),

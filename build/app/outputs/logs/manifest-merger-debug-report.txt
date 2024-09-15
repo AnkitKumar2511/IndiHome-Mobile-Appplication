@@ -53,6 +53,7 @@ INJECTED from /Users/ankitkumargupta/Major Project/android/app/src/main/AndroidM
 MERGED from /Users/ankitkumargupta/Major Project/android/app/src/main/AndroidManifest.xml:1:1-31:12
 MERGED from [:firebase_auth] /Users/ankitkumargupta/Major Project/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
 MERGED from [:firebase_core] /Users/ankitkumargupta/Major Project/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
+MERGED from [:shared_preferences_android] /Users/ankitkumargupta/Major Project/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-auth:23.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/c766ca50bde87ae2a5286a433bfdb412/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:17:1-75:12
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/55bebb2adf7331c9c8a8d8f1a60ed510/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:2:1-18:12
 MERGED from [androidx.credentials:credentials:1.2.0-rc01] /Users/ankitkumargupta/.gradle/caches/transforms-3/a1648e89606011c26d97ae443a0c7677/transformed/jetified-credentials-1.2.0-rc01/AndroidManifest.xml:2:1-7:12
@@ -68,6 +69,8 @@ MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /Users/ankitk
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/d16a9892abf8c820c121b2b6e085b316/transformed/jetified-play-services-fido-20.1.0/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/ankitkumargupta/.gradle/caches/transforms-3/05c6a28c797bbcff52e7137370b8dbe6/transformed/jetified-play-services-auth-base-18.0.4/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/ankitkumargupta/.gradle/caches/transforms-3/91fe2bec1e887c704cc6120aa38cfaef/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:16:1-24:12
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/1cae251c570de445e198c42412f09ce2/transformed/jetified-datastore-preferences-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.datastore:datastore:1.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/7ee9fdc21f78b71863c207ba580a20b0/transformed/jetified-datastore-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.window:window:1.2.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/5c72d54c0f91642db961e3895e65457b/transformed/jetified-window-1.2.0/AndroidManifest.xml:17:1-31:12
 MERGED from [androidx.window:window-java:1.2.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/d3ace8f2ee4948bd59e3342002bd9ed4/transformed/jetified-window-java-1.2.0/AndroidManifest.xml:17:1-21:12
 MERGED from [androidx.loader:loader:1.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/88ceb33a795d14dbbee16867468b9121/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -123,6 +126,8 @@ MERGED from [:firebase_auth] /Users/ankitkumargupta/Major Project/build/firebase
 MERGED from [:firebase_auth] /Users/ankitkumargupta/Major Project/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:firebase_core] /Users/ankitkumargupta/Major Project/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:firebase_core] /Users/ankitkumargupta/Major Project/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:shared_preferences_android] /Users/ankitkumargupta/Major Project/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:shared_preferences_android] /Users/ankitkumargupta/Major Project/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-auth:23.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/c766ca50bde87ae2a5286a433bfdb412/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:21:5-23:151
 MERGED from [com.google.firebase:firebase-auth:23.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/c766ca50bde87ae2a5286a433bfdb412/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:21:5-23:151
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/55bebb2adf7331c9c8a8d8f1a60ed510/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:5:5-44
@@ -153,6 +158,10 @@ MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/ankit
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/ankitkumargupta/.gradle/caches/transforms-3/05c6a28c797bbcff52e7137370b8dbe6/transformed/jetified-play-services-auth-base-18.0.4/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/ankitkumargupta/.gradle/caches/transforms-3/91fe2bec1e887c704cc6120aa38cfaef/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:18:5-43
 MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/ankitkumargupta/.gradle/caches/transforms-3/91fe2bec1e887c704cc6120aa38cfaef/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:18:5-43
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/1cae251c570de445e198c42412f09ce2/transformed/jetified-datastore-preferences-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/1cae251c570de445e198c42412f09ce2/transformed/jetified-datastore-preferences-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore:1.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/7ee9fdc21f78b71863c207ba580a20b0/transformed/jetified-datastore-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore:1.0.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/7ee9fdc21f78b71863c207ba580a20b0/transformed/jetified-datastore-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.window:window:1.2.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/5c72d54c0f91642db961e3895e65457b/transformed/jetified-window-1.2.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.window:window:1.2.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/5c72d54c0f91642db961e3895e65457b/transformed/jetified-window-1.2.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.window:window-java:1.2.0] /Users/ankitkumargupta/.gradle/caches/transforms-3/d3ace8f2ee4948bd59e3342002bd9ed4/transformed/jetified-window-java-1.2.0/AndroidManifest.xml:19:5-44

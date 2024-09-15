@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'favorites_screen.dart'; // Import the FavoritesScreen
 import 'categories_screen.dart'; // Import the CategoriesScreen
+import 'profile_screen.dart'; // Import the ProfileScreen
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
@@ -25,6 +26,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const CategoriesScreen()),
+      );
+    } else if (index == 3) {
+      // Navigate to ProfileScreen when 'Profile' tab is selected
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ProfileScreen()),
       );
     } else {
       setState(() {

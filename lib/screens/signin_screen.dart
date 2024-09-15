@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // Firebase Auth import
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Add SharedPreferences import
 import 'package:indihome/screens/signup_screen.dart';
 import 'package:indihome/screens/forget_password_screen.dart';
 import 'package:indihome/widgets/custom_scaffold.dart';
-import 'package:indihome/Components/sqaure_tile.dart'; // Fixed typo in import
+import 'package:indihome/Components/sqaure_tile.dart';
 import '../theme/theme.dart';
-import 'homepage_screen.dart'; // Import HomePageScreen
+import 'homepage_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -15,40 +16,46 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final _formSignInKey = GlobalKey<FormState>(); // Key to uniquely identify the form
-  final TextEditingController _emailController = TextEditingController(); // Email controller
-  final TextEditingController _passwordController = TextEditingController(); // Password controller
-  bool rememberPassword = true; // State variable to manage the "Remember me" checkbox
+  final _formSignInKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool rememberPassword = true;
 
   @override
   void dispose() {
-    // Dispose controllers to avoid memory leaks
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
 
-  // Sign in method with Firebase
   Future<void> _signInWithEmailAndPassword() async {
     try {
-      // Validate form
       if (_formSignInKey.currentState!.validate()) {
         UserCredential userCredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
+
+        // Retrieve user details
+        String userEmail = userCredential.user!.email!;
+        String userName = userCredential.user!.displayName ?? 'User';
+
+        // Store user details in SharedPreferences
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('username', userName);
+        await prefs.setString('email', userEmail);
+
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Sign in successful')),
         );
-        // Navigate to home or dashboard screen after successful sign-in
+
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const HomePageScreen()), // Updated to match the class name
+          MaterialPageRoute(builder: (context) => const HomePageScreen()),
         );
       }
     } on FirebaseAuthException catch (e) {
-      // Handle Firebase sign-in errors
       String message = 'An error occurred, please try again';
       if (e.code == 'user-not-found') {
         message = 'No user found for that email';
@@ -68,7 +75,7 @@ class _SignInScreenState extends State<SignInScreen> {
         children: [
           const Expanded(
             flex: 1,
-            child: SizedBox(height: 10), // Empty space for alignment
+            child: SizedBox(height: 10),
           ),
           Expanded(
             flex: 7,
@@ -100,7 +107,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         controller: _emailController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Email'; // Email validation message
+                            return 'Please enter Email';
                           }
                           return null;
                         },
@@ -125,7 +132,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         obscuringCharacter: '*',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter Password'; // Password validation message
+                            return 'Please enter Password';
                           }
                           return null;
                         },
@@ -223,10 +230,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // Google button
                           SquareTile(imagePath: 'assets/images/google.png'),
                           SizedBox(width: 25),
-                          // Apple button
                           SquareTile(imagePath: 'assets/images/apple.png'),
                         ],
                       ),
