@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Firebase Auth import
 import 'package:indihome/screens/signup_screen.dart';
-import 'package:indihome/screens/forget_password_screen.dart'; // Import the ForgetPasswordScreen
+import 'package:indihome/screens/forget_password_screen.dart';
 import 'package:indihome/widgets/custom_scaffold.dart';
-import '../Components/sqaure_tile.dart';
+import 'package:indihome/Components/sqaure_tile.dart'; // Fixed typo in import
 import '../theme/theme.dart';
+import 'homepage_screen.dart'; // Import HomePageScreen
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -15,7 +16,50 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final _formSignInKey = GlobalKey<FormState>(); // Key to uniquely identify the form
+  final TextEditingController _emailController = TextEditingController(); // Email controller
+  final TextEditingController _passwordController = TextEditingController(); // Password controller
   bool rememberPassword = true; // State variable to manage the "Remember me" checkbox
+
+  @override
+  void dispose() {
+    // Dispose controllers to avoid memory leaks
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  // Sign in method with Firebase
+  Future<void> _signInWithEmailAndPassword() async {
+    try {
+      // Validate form
+      if (_formSignInKey.currentState!.validate()) {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Sign in successful')),
+        );
+        // Navigate to home or dashboard screen after successful sign-in
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePageScreen()), // Updated to match the class name
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      // Handle Firebase sign-in errors
+      String message = 'An error occurred, please try again';
+      if (e.code == 'user-not-found') {
+        message = 'No user found for that email';
+      } else if (e.code == 'wrong-password') {
+        message = 'Wrong password provided for that user';
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
         children: [
           const Expanded(
             flex: 1,
-            child: SizedBox(
-              height: 10, // Empty space for alignment
-            ),
+            child: SizedBox(height: 10), // Empty space for alignment
           ),
           Expanded(
             flex: 7,
@@ -53,10 +95,9 @@ class _SignInScreenState extends State<SignInScreen> {
                           color: lightColorScheme.primary,
                         ),
                       ),
-                      const SizedBox(
-                        height: 40.0,
-                      ),
+                      const SizedBox(height: 40.0),
                       TextFormField(
+                        controller: _emailController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter Email'; // Email validation message
@@ -66,27 +107,20 @@ class _SignInScreenState extends State<SignInScreen> {
                         decoration: InputDecoration(
                           label: const Text('Email'),
                           hintText: 'Enter Email',
-                          hintStyle: const TextStyle(
-                            color: Colors.black26,
-                          ),
+                          hintStyle: const TextStyle(color: Colors.black26),
                           border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black12, // Default border color
-                            ),
+                            borderSide: const BorderSide(color: Colors.black12),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black12, // Default border color
-                            ),
+                            borderSide: const BorderSide(color: Colors.black12),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 25.0,
-                      ),
+                      const SizedBox(height: 25.0),
                       TextFormField(
+                        controller: _passwordController,
                         obscureText: true,
                         obscuringCharacter: '*',
                         validator: (value) {
@@ -98,26 +132,18 @@ class _SignInScreenState extends State<SignInScreen> {
                         decoration: InputDecoration(
                           label: const Text('Password'),
                           hintText: 'Enter Password',
-                          hintStyle: const TextStyle(
-                            color: Colors.black26,
-                          ),
+                          hintStyle: const TextStyle(color: Colors.black26),
                           border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black12, // Default border color
-                            ),
+                            borderSide: const BorderSide(color: Colors.black12),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black12, // Default border color
-                            ),
+                            borderSide: const BorderSide(color: Colors.black12),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 25.0,
-                      ),
+                      const SizedBox(height: 25.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -127,22 +153,19 @@ class _SignInScreenState extends State<SignInScreen> {
                                 value: rememberPassword,
                                 onChanged: (bool? value) {
                                   setState(() {
-                                    rememberPassword = value!; // Update state when checkbox changes
+                                    rememberPassword = value!;
                                   });
                                 },
                                 activeColor: lightColorScheme.primary,
                               ),
                               const Text(
                                 'Remember me',
-                                style: TextStyle(
-                                  color: Colors.black45,
-                                ),
+                                style: TextStyle(color: Colors.black45),
                               ),
                             ],
                           ),
                           GestureDetector(
                             onTap: () {
-                              // Navigate to ForgetPasswordScreen when tapped
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -160,35 +183,15 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 25.0,
-                      ),
+                      const SizedBox(height: 25.0),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {
-                            // Validate form and show appropriate SnackBar
-                            if (_formSignInKey.currentState!.validate() &&
-                                rememberPassword) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Processing Data'),
-                                ),
-                              );
-                            } else if (!rememberPassword) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text(
-                                        'Please agree to the processing of personal data')),
-                              );
-                            }
-                          },
-                          child: const Text('Sign up'),
+                          onPressed: _signInWithEmailAndPassword,
+                          child: const Text('Sign in'),
                         ),
                       ),
-                      const SizedBox(
-                        height: 25.0,
-                      ),
+                      const SizedBox(height: 25.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -204,10 +207,8 @@ class _SignInScreenState extends State<SignInScreen> {
                               horizontal: 10,
                             ),
                             child: Text(
-                              'Sign up with',
-                              style: TextStyle(
-                                color: Colors.black45,
-                              ),
+                              'Sign in with',
+                              style: TextStyle(color: Colors.black45),
                             ),
                           ),
                           Expanded(
@@ -218,35 +219,27 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 25.0,
-                      ),
-                      Row(
+                      const SizedBox(height: 25.0),
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           // Google button
                           SquareTile(imagePath: 'assets/images/google.png'),
-                          const SizedBox(width: 25),
+                          SizedBox(width: 25),
                           // Apple button
                           SquareTile(imagePath: 'assets/images/apple.png'),
                         ],
                       ),
-                      const SizedBox(
-                        height: 25.0,
-                      ),
-                      // Don't have an account
+                      const SizedBox(height: 25.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
                             'Don\'t have an account? ',
-                            style: TextStyle(
-                              color: Colors.black45,
-                            ),
+                            style: TextStyle(color: Colors.black45),
                           ),
                           GestureDetector(
                             onTap: () {
-                              // Navigate to SignUpScreen when tapped
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -264,9 +257,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
+                      const SizedBox(height: 20.0),
                     ],
                   ),
                 ),

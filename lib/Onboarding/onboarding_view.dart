@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'onboarding_items.dart'; // Make sure this is the correct path to your OnboardingItems
+import 'onboarding_items.dart'; // Ensure this is the correct path to your OnboardingItems
 import 'package:indihome/screens/welcome_screen.dart'; // Update this path to match the location of your WelcomeScreen
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingView extends StatefulWidget {
-  const OnboardingView({Key? key}) : super(key: key);
+  const OnboardingView({super.key});
 
   @override
   State<OnboardingView> createState() => _OnboardingViewState();
@@ -35,16 +35,23 @@ class _OnboardingViewState extends State<OnboardingView> {
             SmoothPageIndicator(
               controller: pageController,
               count: controller.items.length,
-              onDotClicked: (index) => pageController.animateToPage(index, duration: const Duration(milliseconds: 800), curve: Curves.easeIn),
+              onDotClicked: (index) => pageController.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 800),
+                curve: Curves.easeIn,
+              ),
               effect: const WormEffect(
                 dotHeight: 12,
                 dotWidth: 12,
-                activeDotColor: Colors.purple,
+                activeDotColor: Colors.purple, // Update this color as needed
               ),
             ),
             // Next Button
             TextButton(
-              onPressed: () => pageController.nextPage(duration: const Duration(milliseconds: 800), curve: Curves.easeIn),
+              onPressed: () => pageController.nextPage(
+                duration: const Duration(milliseconds: 800),
+                curve: Curves.easeIn,
+              ),
               child: const Text("Next"),
             ),
           ],
@@ -64,13 +71,19 @@ class _OnboardingViewState extends State<OnboardingView> {
                 const SizedBox(height: 15),
                 Text(
                   controller.items[index].title,
-                  style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 15),
                 Text(
                   controller.items[index].description,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.grey, fontSize: 17),
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 17,
+                  ),
                 ),
               ],
             );
@@ -96,9 +109,11 @@ class _OnboardingViewState extends State<OnboardingView> {
             MaterialPageRoute(builder: (context) => const WelcomeScreen()),
           );
         },
-        child: const Text("Get Started", style: TextStyle(color: Colors.white)),
+        child: const Text(
+          "Get Started",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
 }
-

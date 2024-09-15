@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:indihome/screens/signin_screen.dart';
 import 'package:indihome/theme/theme.dart';
 import 'package:indihome/widgets/custom_scaffold.dart';
@@ -15,7 +15,44 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formSignupKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
   bool agreePersonalData = true;
+
+  // Firebase Auth instance
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  // Sign up method
+  Future<void> _signUp() async {
+    try {
+      final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      // If sign-up is successful, navigate to the sign-in screen or home screen
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Sign-up Successful')),
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const SignInScreen()),
+      );
+    } on FirebaseAuthException catch (e) {
+      String message = 'An error occurred, please try again.';
+      if (e.code == 'weak-password') {
+        message = 'The password provided is too weak.';
+      } else if (e.code == 'email-already-in-use') {
+        message = 'An account already exists for that email.';
+      } else if (e.code == 'invalid-email') {
+        message = 'The email address is not valid.';
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -59,6 +96,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       // full name
                       TextFormField(
+                        controller: _fullNameController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter Full name';
@@ -90,6 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       // email
                       TextFormField(
+                        controller: _emailController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter Email';
@@ -121,6 +160,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       // password
                       TextFormField(
+                        controller: _passwordController,
                         obscureText: true,
                         obscuringCharacter: '*',
                         validator: (value) {
@@ -189,11 +229,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onPressed: () {
                             if (_formSignupKey.currentState!.validate() &&
                                 agreePersonalData) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Processing Data'),
-                                ),
-                              );
+                              _signUp();
                             } else if (!agreePersonalData) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
@@ -241,21 +277,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(
                         height: 30.0,
                       ),
-                      // sign up social media logo
+                      // third party sign in
                       const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          // google button
-                          SquareTile(imagePath: 'assets/images/google.png'),
-                          SizedBox(width: 25),
-                          // apple button
-                          SquareTile(imagePath: 'assets/images/apple.png')
+                          SquareTile(
+                            imagePath: 'assets/images/google_logo.png',
+                          ),
+                          SquareTile(
+                            imagePath: 'assets/images/facebook_logo.png',
+                          ),
                         ],
                       ),
                       const SizedBox(
-                        height: 25.0,
+                        height: 30.0,
                       ),
-                      // already have an account
+                      // sign in text
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -270,7 +307,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (e) => const SignInScreen(),
+                                  builder: (context) =>
+                                  const SignInScreen(),
                                 ),
                               );
                             },
@@ -283,9 +321,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ),
                         ],
-                      ),
-                      const SizedBox(
-                        height: 20.0,
                       ),
                     ],
                   ),
